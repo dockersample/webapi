@@ -14,8 +14,17 @@ namespace chapter1_webapi
     {
         public static void Main(string[] args)
         {   
+            var host = new WebHostBuilder()
+            .UseUrls("http://*:5000")
+            .UseKestrel()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseIISIntegration()
+            .UseStartup<Startup>()
+            .Build();
+
+            host.Run();
             
-            CreateWebHostBuilder(args).Build().Run();
+            //CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
